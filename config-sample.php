@@ -28,6 +28,9 @@ $value = '0.85';
 $limitperiod = 10;
 $dumplimit = 20;
 
+# Header image location
+$headerimage = 'images/';
+
 # Enjoy!
 ?>
 

@@ -65,7 +65,7 @@ function limitText(limitField, limitCount, limitNum) {
 </style>
 <META HTTP-EQUIV="refresh" CONTENT="<?php echo $refreshrate; ?>">
 </head>
-<body style="background-image:url('question ghost.png'); background-repeat:no-repeat; background-position:right top;">
+<body style="background-image:url('<?php echo $headerimage; ?>'); background-repeat:no-repeat; background-position:right top;">
 <center>
 <font class="shadowtexttitle"><b><?php echo $title; ?></font></br>
 <font class="shadowtexttag"><?php echo $tagline; ?></font><br>
