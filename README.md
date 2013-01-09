@@ -7,6 +7,7 @@ System requirements
 
 * PHP
 * MySQL
+* bad-behaviour (recommended)
 
 Check out http://DumpBoard.com for a working version.
 Copyright (C) 2013 Gregology
