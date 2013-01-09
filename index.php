@@ -64,6 +64,7 @@ function limitText(limitField, limitCount, limitNum) {
 	}
 </style>
 <META HTTP-EQUIV="refresh" CONTENT="<?php echo $refreshrate; ?>">
+<?php include("trackscript.html"); ?>
 </head>
 <body style="background-image:url('<?php echo $headerimage; ?>'); background-repeat:no-repeat; background-position:right top;">
 <center>
