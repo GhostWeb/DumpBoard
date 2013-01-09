@@ -31,6 +31,9 @@ $dumplimit = 20;
 # Header image location
 $headerimage = 'images/';
 
+# Location of bad-behavior script
+$path_to_bb = '/var/www/bad-behavior';
+
 # Enjoy!
 ?>
 
