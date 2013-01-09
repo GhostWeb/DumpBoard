@@ -126,26 +126,9 @@ echo "	</p>\n";
 }
 }
 
-
-// adds data to db
-$time = microtime(); // gets current time
-$time = explode(" ", $time);
-$time = $time[1] + $time[0];
-$finish = $time;
-$totaltime = ($finish - $start); // figures out time
-//Insert the data in the table...
-$query_insert  ="INSERT INTO webstats
-(browser,ip,uri,from_page,language,loadtime) VALUES
-('$browser','$ip','$uri','$from_page','$language','$totaltime')" ;
-$result=mysql_query ( $query_insert);
-if(!$result){
-die(mysql_error());
-}
-
-
 ?>
 
 <hr size=2 color='#"555"'>
-<div align='center'><font size="1" color="#888">This free service is brought to you by <a href="http://gho.st">Gho.st community web services</a>. Engine designed & developed by <a href="http://gregology.net">Gregology</a> with help from users of <a href="http://stackoverflow.com">Stack Overflow</a>. Please respect intellectual property. Enjoy!</font></div>
+<div align='center'><font size="1" color="#888">This free service is brought to you by <a href="http://gho.st">Gho.st community web services</a>. Engine designed & developed by <a href="http://gregology.net">Gregology</a>. Please respect intellectual property. Enjoy!</font></div>
 </body>
 </html>
