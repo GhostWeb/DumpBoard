@@ -64,16 +64,6 @@ function limitText(limitField, limitCount, limitNum) {
 	}
 </style>
 <META HTTP-EQUIV="refresh" CONTENT="<?php echo $refreshrate; ?>">
-<script type="text/javascript">
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-28725137-3']);
-	_gaq.push(['_trackPageview']);
-	(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
-</script>
 </head>
 <body style="background-image:url('question ghost.png'); background-repeat:no-repeat; background-position:right top;">
 <center>
