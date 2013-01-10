@@ -11,9 +11,9 @@ $refreshrate = 600;
 
 # MySQL Database settings. Note: The database needs to be created manually. I might make a install application in later versions.
 $dbhost = 'localhost';
-$dbname = '';
-$dbuser = '';
-$dbpass = '';
+$dbname = 'dbname';
+$dbuser = 'dbuser';
+$dbpass = 'dbpass';
 
 # Text length. Note: currently this will only affect the size of the input box.
 $textlength = 4096;
