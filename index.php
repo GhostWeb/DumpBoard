@@ -2,12 +2,6 @@
 $path_to_bb = '/var/www/bad-behavior';
 require_once("$path_to_bb/bad-behavior-generic.php");
 
-// Start time
-$time = microtime();
-$time = explode(" ", $time);
-$time = $time[1] + $time[0];
-$start = $time;
-
 session_start();
 
 // Includes the settings from the config file
