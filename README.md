@@ -10,6 +10,9 @@ System requirements
 * bad-behaviour (recommended)
 
 Check out http://DumpBoard.com for a working version.
+
+Try using the raw url with curl to move text to command line servers.
+
 Copyright (C) 2013 Gregology
 
 This program is free software: you can redistribute it and/or modify
