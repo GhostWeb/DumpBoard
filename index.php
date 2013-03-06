@@ -109,10 +109,14 @@ if( $row['dumpersIP'] == $dumpersIP ){
 $X = '<a href="/del.php?d='.$row['dumpID'].'" style=color:#'.$RGB.';> X</a>' ;
 }
 
+// rawID for short raw url
+$rawID = substr($row['dumpID'], -2);
+
+
 // outputs dump with htmlentities removed and nl replaced with <br>
 echo "	<p>\n";
 echo "	<div align='right'>\n";
-echo "		<font size='1' color='#".$RGB."'>dumped ".$displaytime." ago".$star."".$X."</font>\n";
+echo "		<font size='1' color='#".$RGB."'>dumped ".$displaytime." ago".$star."".$X." <a href='/".$rawID."' style=color:#".$RGB.";> raw</a></font>\n";
 echo "	</div>\n";
 echo "	<hr size=2 color='#".$RGB."'>\n";
 echo "		<font color='#".$RGB."'><PRE>".(makelinks(htmlentities($row['dumpedtext']),$RGB))."</PRE></font>\n";
