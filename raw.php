@@ -14,7 +14,7 @@ $ip = ip_address_to_number($_SERVER['REMOTE_ADDR']);
 $conn = mysql_connect($dbhost, $dbuser, $dbpass) or die ('Error connecting to mysql');
 mysql_select_db($dbname);
 
-$dumpID = substr($_GET['dump'], -2);
+$dumpID = substr(mysql_real_escape_string($_GET['dump']), -2);
 
 $sql = "SELECT * FROM  `displaydumps` WHERE SUBSTRING( dumpID, -2 ) =  '".$dumpID."' ORDER BY  `displaydumps`.`dumpID` DESC LIMIT 0 , 1";
 $query = mysql_query($sql);
