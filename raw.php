@@ -9,6 +9,8 @@ include("config.php");
 include("functions.php");
 
 $ip = ip_address_to_number($_SERVER['REMOTE_ADDR']);
+$useragent = $_SERVER['HTTP_USER_AGENT'];
+$regex = "/curl|wget|lynx/i";
 
 // Opens database connections
 $conn = mysql_connect($dbhost, $dbuser, $dbpass) or die ('Error connecting to mysql');
@@ -21,7 +23,13 @@ $query = mysql_query($sql);
 while($row = mysql_fetch_array($query)) {
 if( $row['limitedviewing'] == "1" && $ip != $row['dumpersIP']) {
 } else {
-echo $row['dumpedtext'];
+if (preg_match($regex, $useragent)) {
+    # outputs raw data
+    echo $row['dumpedtext'];
+} else {
+    # displays raw data
+    echo "<html><PRE>".htmlentities($row['dumpedtext'])."</PRE></html>";
+}
 }
 }
 
