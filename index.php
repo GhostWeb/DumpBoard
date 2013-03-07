@@ -70,7 +70,7 @@ function limitText(limitField, limitCount, limitNum) {
 onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,<?php echo $textlength; ?>);"></textarea><br>
 	<font size="1">
 		You have <input readonly type="text" name="countdown" size="3" value="<?php echo $textlength; ?>"> characters left.</br>
-		Limit viewing to your IP <input type="checkbox" name="iplimit" value="1">
+		Limit viewing <input type="checkbox" name="iplimit" title="Limit viewing to your external facing IP address" value="1">
 	</font>
 	<INPUT TYPE=SUBMIT VALUE="Dump!"><br>
 	<font size="1" color="#888">Text will fade away after <?php echo $dumpduration; ?> minutes</font><br>
@@ -106,7 +106,7 @@ $star = " <i>(viewing limited to your public facing IP)</i>" ;
 // puts a X for own posts
 $X = "";
 if( $row['dumpersIP'] == $dumpersIP ){
-$X = ' <a href="/del.php?d='.$row['dumpID'].'" style=color:#'.$RGB.';>X</a>' ;
+$X = ' <a href="/del.php?d='.$row['dumpID'].'" title="Delete this dump" style=color:#'.$RGB.';>X</a>' ;
 }
 
 // rawID for short raw url
@@ -116,7 +116,7 @@ $rawID = substr($row['dumpID'], -2);
 // outputs dump with htmlentities removed and nl replaced with <br>
 echo "	<p>\n";
 echo "	<div align='right'>\n";
-echo "		<font size='1' color='#".$RGB."'>dumped ".$displaytime." ago <a href='/".$rawID."' style=color:#".$RGB.";> raw</a>".$star."".$X."</font>\n";
+echo "		<font size='1' color='#".$RGB."'>dumped ".$displaytime." ago <a href='/".$rawID."' title='Raw text id is ".$rawID."' style=color:#".$RGB.";> raw</a>".$star."".$X."</font>\n";
 echo "	</div>\n";
 echo "	<hr size=2 color='#".$RGB."'>\n";
 echo "		<font color='#".$RGB."'><PRE>".(makelinks(htmlentities($row['dumpedtext']),$RGB))."</PRE></font>\n";
