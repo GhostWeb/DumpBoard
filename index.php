@@ -105,8 +105,9 @@ $star = " <i>(viewing limited to your public facing IP)</i>" ;
 
 // puts a X for own posts
 $X = "";
+$R = "";
 if( $row['dumpersIP'] == $dumpersIP ){
-$X = ' <a href="/del.php?d='.$row['dumpID'].'" title="Delete this dump" style=color:#'.$RGB.';>X</a>' ;
+$X = ' <a href="/ref.php?r='.$row['dumpID'].'" title="Redump this post" style=color:#'.$RGB.';>^</a> <a href="/del.php?d='.$row['dumpID'].'" title="Delete this dump" style=color:#'.$RGB.';>X</a>' ;
 }
 
 // rawID for short raw url
@@ -116,7 +117,7 @@ $rawID = substr($row['dumpID'], -2);
 // outputs dump with htmlentities removed and nl replaced with <br>
 echo "	<p>\n";
 echo "	<div align='right'>\n";
-echo "		<font size='1' color='#".$RGB."'>dumped ".$displaytime." ago <a href='/".$rawID."' title='Raw text id is ".$rawID."' style=color:#".$RGB.";> raw</a>".$star."".$X."</font>\n";
+echo "		<font size='1' color='#".$RGB."'>dumped ".$displaytime." ago (<a href='/".$rawID."' title='Raw text id is ".$rawID."' style=color:#".$RGB.";>".$rawID."</a>)".$star."".$X."</font>\n";
 echo "	</div>\n";
 echo "	<hr size=2 color='#".$RGB."'>\n";
 echo "		<font color='#".$RGB."'><PRE>".(makelinks(htmlentities($row['dumpedtext']),$RGB))."</PRE></font>\n";
