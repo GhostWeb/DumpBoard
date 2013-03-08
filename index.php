@@ -100,7 +100,7 @@ $RGB = HSVtoRGB($hsv);
 // places an astrix next to private messages
 $star = "" ;
 if( $row['limitedviewing'] == "1" ){
-$star = " <i>(viewing limited to your public facing IP)</i>" ;
+$star = " <i>{viewing limited to your public facing IP}</i>" ;
 }
 
 // puts a X for own posts
@@ -117,7 +117,7 @@ $rawID = substr($row['dumpID'], -2);
 // outputs dump with htmlentities removed and nl replaced with <br>
 echo "	<p>\n";
 echo "	<div align='right'>\n";
-echo "		<font size='1' color='#".$RGB."'>dumped ".$displaytime." ago (<a href='/".$rawID."' title='Raw text id, useful for curl on *nix' style=color:#".$RGB.";>".$rawID."</a>)".$star."".$X."</font>\n";
+echo "		<font size='1' color='#".$RGB."'>dumped ".$displaytime." ago".$star." (<a href='/".$rawID."' title='Raw text id, useful for curl on *nix' style=color:#".$RGB.";>".$rawID."</a>)".$X."</font>\n";
 echo "	</div>\n";
 echo "	<hr size=2 color='#".$RGB."'>\n";
 echo "		<font color='#".$RGB."'><PRE>".(makelinks(htmlentities($row['dumpedtext']),$RGB))."</PRE></font>\n";
