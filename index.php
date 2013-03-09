@@ -106,7 +106,7 @@ $star = " <i>{viewing limited to your public facing IP}</i>" ;
 // puts a X for own posts
 $X = "";
 if( $row['dumpersIP'] == $dumpersIP ){
-$X = ' <a href="/ref.php?r='.$row['dumpID'].'" title="Repost this dump" style=color:#'.$RGB.';>+</a> <a href="/del.php?d='.$row['dumpID'].'" title="Delete this dump" style=color:#'.$RGB.';>x</a>' ;
+$X = ' <a href="/ref.php?r='.$row['dumpID'].'" title="Repost this dump" style=color:#'.$RGB.';>&#x25B2;</a> <a href="/del.php?d='.$row['dumpID'].'" title="Delete this dump" style=color:#'.$RGB.';>&#x25C8;</a>' ;
 }
 
 // rawID for short raw url
