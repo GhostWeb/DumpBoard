@@ -1,5 +1,11 @@
 # This is necessary to prevent the raw pages being used for spam
 User-agent: *
+Disallow: dump.php
+Disallow: del.php
+Disallow: raw.php
+Disallow: ref.php
+Disallow: config.php
+Disallow: functions.php
 Disallow: /00
 Disallow: /01
 Disallow: /02
