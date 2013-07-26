@@ -164,6 +164,6 @@ echo "	</p>\n";
 ?>
 
 <hr size=2 color='#"555"'>
-<div align='center'><font size="1" color="#888">This free service is brought to you by <a href="http://gho.st">Gho.st community web services</a>. Engine designed & developed by <a href="http://gregology.net">Gregology</a>. Please respect intellectual property. Enjoy!</font></div>
+<div align='center'><font size="1" color="#888">This free service is brought to you by <a href="http://gho.st">Gho.st community web services</a>, <a href="https://github.com/GhostWeb/DumpBoard">fork me!</a> Engine designed & developed by <a href="http://gregology.net">Gregology</a>. Please respect intellectual property. Enjoy!</font></div>
 </body>
 </html>
