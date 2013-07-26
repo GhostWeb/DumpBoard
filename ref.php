@@ -32,7 +32,7 @@ $limitedviewing = $_POST['iplimit'];
 $idtorefresh = mysql_real_escape_string($_GET['r']);
 
 // checks dump limits
-$sql = 'UPDATE `dumps` SET timestamp = now() WHERE dumpersIP = "'.$dumpersIP.'" AND dumpID = "'.$idtorefresh.'"';
+$sql = 'UPDATE `dumps` SET timestamp = now() WHERE dumpID = "'.$idtorefresh.'"';
 $query = mysql_query($sql);
 while($row = mysql_fetch_array($query)) {
 }

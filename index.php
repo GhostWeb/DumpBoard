@@ -35,6 +35,36 @@ $textboxcolor = HSVtoRGB($hsv);
 <html>
 <head>
 <title><?php echo $title; ?></title>
+<script type="text/javascript" src="ZeroClipboard.js"></script>
+<script language="JavaScript">
+////copy to clip
+  	var clip = null;
+
+   function $(id) { return document.getElementById(id); }
+
+   function init() 
+   {
+      clip = new ZeroClipboard.Client();
+      clip.setHandCursor( true );
+   }
+
+   function move_swf(ee)
+   {    
+      copything = document.getElementById(ee.id+"_text").innerHTML;
+      clip.setText(copything);
+
+         if (clip.div)
+		 {	  
+            clip.receiveEvent('mouseout', null);
+            clip.reposition(ee.id);
+         }
+         else{ clip.glue(ee.id);   }
+ 
+         clip.receiveEvent('mouseover', null);
+ 
+   }    
+   
+</script>
 <script language="javascript" type="text/javascript">
 function limitText(limitField, limitCount, limitNum) {
 	if (limitField.value.length > limitNum) {
@@ -67,7 +97,7 @@ function limitText(limitField, limitCount, limitNum) {
 <META HTTP-EQUIV="refresh" CONTENT="<?php echo $refreshrate; ?>">
 <?php include("trackscript.html"); ?>
 </head>
-<body style="background-image:url('<?php echo $headerimage; ?>'); background-repeat:no-repeat; background-position:right top;">
+<body style="background-image:url('<?php echo $headerimage; ?>'); background-repeat:no-repeat; background-position:right top;" onload="init();">
 <center>
 <font class="shadowtexttitle"><b><?php echo $title; ?></font></br>
 <font class="shadowtexttag"><?php echo $tagline; ?></font><br>
@@ -113,7 +143,7 @@ $star = " <i>{viewing limited to your public facing IP}</i>" ;
 // puts a X for own posts
 $X = "";
 if( $row['dumpersIP'] == $dumpersIP ){
-$X = ' <a href="/ref.php?r='.$row['dumpID'].'" title="Repost this dump" style=color:#'.$RGB.';>^</a> <a href="/del.php?d='.$row['dumpID'].'" title="Delete this dump" style=color:#'.$RGB.';>X</a>' ;
+$X = ' <a href="/del.php?d='.$row['dumpID'].'" title="Delete this dump" style=color:#'.$RGB.';>X</a>' ;
 }
 
 // rawID for short raw url
@@ -123,10 +153,10 @@ $rawID = substr($row['dumpID'], -2);
 // outputs dump with htmlentities removed and nl replaced with <br>
 echo "	<p>\n";
 echo "	<div align='right'>\n";
-echo "		<font size='1' color='#".$RGB."'>dumped ".$displaytime." ago".$star." (<a href='/".$rawID."' title='Raw text id, useful for curl on *nix' style=color:#".$RGB.";>".$rawID."</a>)".$X."</font>\n";
+echo "		<font size='1' color='#".$RGB."'>dumped ".$displaytime." ago".$star." (<a href='/".$rawID."' title='Raw text id, useful for curl on *nix' style=color:#".$RGB.";>".$rawID."</a>) <a href='/ref.php?r=".$row['dumpID']."' title='Repost this dump' style=color:#".$RGB.";>^</a> <a id='".$row['dumpID']."' title='Copy dump' onMouseOver='move_swf(this);return false;'><u>C</u></a>".$X."</font>\n";
 echo "	</div>\n";
 echo "	<hr size=2 color='#".$RGB."'>\n";
-echo "		<font color='#".$RGB."'><PRE>".(makelinks(htmlentities($row['dumpedtext']),$RGB))."</PRE></font>\n";
+echo "		<font color='#".$RGB."'><PRE><p id='".$row['dumpID']."_text'>".(makelinks(htmlentities($row['dumpedtext']),$RGB))."</p></PRE></font>\n";
 echo "	</p>\n";
 }
 }
