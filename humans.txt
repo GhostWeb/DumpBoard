@@ -1,8 +1,21 @@
-/* Foundation was made by ZURB, an interaction design and design strategy firm in Campbell, CA */
-/* zurb.com */
 /* humanstxt.org */
 
+/* AUTHORS */
+
+Name: Greg Clarke
+Twitter: gregologynet
+Github: gregology
+Website: http://gho.st
+Location: Ottawa, Canada
+
+Name: Jackson Couse
+Twitter: jacksoncouse
+Github: jacksoncouse
+Website: http://couse.ca
+Location: Ottawa, Canada
+
 /* SITE */
-  Standards: HTML5, CSS3
-  Components: jQuery, Orbit, Reveal
-  Software: Coda, Textmate, Git
+
+Standards: HTML5, CSS3
+Components: Foundation 4, ZeroClipboard, Bad Behaviour
+Software: SublimeText2, Gedit, Git, Linux Mint

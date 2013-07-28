@@ -36,6 +36,7 @@
   $head = "<html>
   <head>
     <title>$title</title>
+    <script src="js/vendor/custom.modernizr.js"></script>
     <script type='text/javascript' src='ZeroClipboard.js'></script>
     <script language='JavaScript'>
       var clip = null;
@@ -76,7 +77,6 @@
     </script>
     <style type='text/css'>
 	body {
-		font-family: arial, verdana, sans-serif;
 		background-color: #FEFEFE }
 	.shadowtexttitle {
 		text-shadow: 2px 2px 1px rgba(0,0,0,0.4);
@@ -94,6 +94,9 @@
 	word-wrap: break-word;       /* Internet Explorer 5.5+ */
 	}
     </style>
+
+    <link rel="stylesheet" href="css/app.css" />
+
     <META HTTP-EQUIV='refresh' CONTENT='$refreshrate'>
     $trackingscript
   </head>
