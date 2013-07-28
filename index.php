@@ -50,7 +50,7 @@
 
       function move_swf(ee)
       {    
-        copything = document.getElementById(ee.id).innerHTML;
+        copything = document.getElementById(ee.id + ' text').innerHTML;
         clip.setText(copything);
 
           if (clip.div)
@@ -160,7 +160,7 @@ onKeyUp='limitText(this.form.limitedtextarea,this.form.countdown,$textlength);'>
     </div>
     <hr size=2 color='#$RGB'>
       <font color='#$RGB'>
-        <PRE><p id='$dumpID'>$displaytext</p></PRE>
+        <PRE><p id='$dumpID text'>$displaytext</p></PRE>
       </font>
     </p>";
     }
