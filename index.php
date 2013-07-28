@@ -31,12 +31,13 @@
   $hsv = array($h, '1', $value);
   $textboxcolor = HSVtoRGB($hsv);
 
-?>
-<html>
+  $trackingscript = file_get_contents('trackscript.html');
+
+  $head = "<html>
   <head>
-    <title><?php echo $title; ?></title>
-    <script type="text/javascript" src="ZeroClipboard.js"></script>
-    <script language="JavaScript">
+    <title>$title</title>
+    <script type='text/javascript' src='ZeroClipboard.js'></script>
+    <script language='JavaScript'>
       var clip = null;
 
       function $(id) { return document.getElementById(id); }
@@ -49,7 +50,7 @@
 
       function move_swf(ee)
       {    
-        copything = document.getElementById(ee.id+"_text").innerHTML;
+        copything = document.getElementById(ee.id+'_text').innerHTML;
         clip.setText(copything);
 
           if (clip.div)
@@ -64,7 +65,7 @@
    }    
    
     </script>
-    <script language="javascript" type="text/javascript">
+    <script language='javascript' type='text/javascript'>
       function limitText(limitField, limitCount, limitNum) {
       if (limitField.value.length > limitNum) {
       limitField.value = limitField.value.substring(0, limitNum);
@@ -73,7 +74,7 @@
       }
       }
     </script>
-    <style type="text/css">
+    <style type='text/css'>
 	body {
 		font-family: arial, verdana, sans-serif;
 		background-color: #FEFEFE }
@@ -93,26 +94,26 @@
 	word-wrap: break-word;       /* Internet Explorer 5.5+ */
 	}
     </style>
-    <META HTTP-EQUIV="refresh" CONTENT="<?php echo $refreshrate; ?>">
-    <?php include("trackscript.html"); ?>
+    <META HTTP-EQUIV='refresh' CONTENT='$refreshrate'>
+    $trackingscript
   </head>
-  <body style="background-image:url('<?php echo $headerimage; ?>'); background-repeat:no-repeat; background-position:right top;" onload="init();">
+  <body style='background-image:url(`$headerimage`); background-repeat:no-repeat; background-position:right top;' onload='init();'>
     <center>
-    <font class="shadowtexttitle"><b><?php echo $title; ?></font></br>
-    <font class="shadowtexttag"><?php echo $tagline; ?></font><br>
-    <form name="dump" action="dump.php" method="POST">
-    <form name="myform">
-    <textarea style="width:95%; color:#<?php echo $textboxcolor; ?>; border:2px solid #<?php echo $textboxcolor; ?>; font-weight:bold;" rows="8" name="limitedtextarea" onKeyDown="limitText(this.form.limitedtextarea,this.form.countdown,<?php echo $textlength; ?>);" 
-onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,<?php echo $textlength; ?>);"></textarea><br>
-    <font size="1">
-      You have <input readonly type="text" name="countdown" size="3" value="<?php echo $textlength; ?>"> characters left.</br>
-      Limit viewing <input type="checkbox" name="iplimit" title="Limit viewing to your external facing IP address" value="1">
+    <font class='shadowtexttitle'><b>$title</font></br>
+    <font class='shadowtexttag'>$tagline</font><br>
+    <form name='dump' action='dump.php' method='POST'>
+    <form name='myform'>
+    <textarea style='width:95%; color:#$textboxcolor; border:2px solid #$textboxcolor; font-weight:bold;' rows='8' name='limitedtextarea' onKeyDown='limitText(this.form.limitedtextarea,this.form.countdown,$textlength);' 
+onKeyUp='limitText(this.form.limitedtextarea,this.form.countdown,$textlength);'></textarea><br>
+    <font size='1'>
+      You have <input readonly type='text' name='countdown' size='3' value='$textlength'> characters left.</br>
+      Limit viewing <input type='checkbox' name='iplimit' title='Limit viewing to your external facing IP address' value='1'>
     </font>
-    <INPUT TYPE=SUBMIT VALUE="Dump!"><br>
-    <font size="1" color="#888">Text will fade away after <?php echo $dumpduration; ?> minutes</font><br>
+    <INPUT TYPE=SUBMIT VALUE='Dump!'><br>
+    <font size='1' color='#888'>Text will fade away after $dumpduration minutes</font><br>
     </form>
-    </center>
-<?php
+    </center>";
+
   $sql = 'SELECT *  FROM `displaydumps` WHERE timestamp > NOW() - INTERVAL '.$dumpduration.' MINUTE ORDER BY `timestamp` DESC';
   $query = mysql_query($sql);
   while($row = mysql_fetch_array($query)) {
@@ -142,26 +143,32 @@ onKeyUp="limitText(this.form.limitedtextarea,this.form.countdown,<?php echo $tex
   // puts a X for own posts
   $X = "";
   if( $row['dumpersIP'] == $dumpersIP ){
-  $X = " <a href='/ref.php?r=".$row['dumpID']."' title='Repost this dump' style=color:#".$RGB.";>^</a>  <a href='/del.php?d=".$row['dumpID']."' title='Delete this dump' style=color:#".$RGB.";>X</a>" ;
+  $X = " <a href='/ref.php?r=".$row['dumpID']."' title='Repost this dump' style=color:#$RGB;>^</a>  <a href='/del.php?d=".$row['dumpID']."' title='Delete this dump' style=color:#$RGB;>X</a>" ;
   }
 
   // rawID for short raw url
   $rawID = substr($row['dumpID'], -2);
 
-
   // outputs dump with htmlentities removed and nl replaced with <br>
-  echo "    <p>\n";
-  echo "    <div align='right'>\n";
-  echo "      <font size='1' color='#".$RGB."'>dumped ".$displaytime." ago".$star." (<a href='/".$rawID."' title='Raw text id, useful for curl on *nix' style=color:#".$RGB.";>".$rawID."</a>) <a id='".$row['dumpID']."' title='Copy dump' onMouseOver='move_swf(this);return false;'><u>C</u></a>".$X."</font>\n";
-  echo "    </div>\n";
-  echo "    <hr size=2 color='#".$RGB."'>\n";
-  echo "      <font color='#".$RGB."'><PRE><p id='".$row['dumpID']."_text'>".(makelinks(htmlentities($row['dumpedtext']),$RGB))."</p></PRE></font>\n";
-  echo "    </p>\n";
+  $dumps = "$dumps
+    <p>
+    <div align='right'>
+    <font size='1' color='#$RGB'>dumped $displaytime ago$star (<a href='/$rawID' title='Raw text id, useful for curl on *nix' style=color:#$RGB;>$rawID</a>) <a id='".$row['dumpID']."' title='Copy dump' onMouseOver='move_swf(this);return false;'><u>C</u></a>$X</font>
+      </div>
+      <hr size=2 color='#$RGB'>
+        <font color='#$RGB'><PRE><p id='".$row['dumpID']."_text'>".(makelinks(htmlentities($row['dumpedtext']),$RGB))."</p></PRE></font>
+    </p>";
   }
   }
+
+  $footer = "
+    <hr size=2 color='#555'>
+    <div align='center'><font size='1' color='#888'>This free service is brought to you by <a href='http://gho.st'>Gho.st community web services</a>, <a href='https://github.com/GhostWeb/DumpBoard'>fork me!</a> Engine designed & developed by <a href='http://gregology.net'>Gregology</a>. Please respect intellectual property. Enjoy!</font></div>
+  </body>
+</html>";
+
+echo $head;
+echo $dumps;
+echo $footer;
 
 ?>
-    <hr size=2 color='#"555"'>
-    <div align='center'><font size="1" color="#888">This free service is brought to you by <a href="http://gho.st">Gho.st community web services</a>, <a href="https://github.com/GhostWeb/DumpBoard">fork me!</a> Engine designed & developed by <a href="http://gregology.net">Gregology</a>. Please respect intellectual property. Enjoy!</font></div>
-  </body>
-</html>
