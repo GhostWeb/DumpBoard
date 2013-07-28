@@ -50,7 +50,7 @@
 
       function move_swf(ee)
       {    
-        copything = document.getElementById(ee.id+'_text').innerHTML;
+        copything = document.getElementById(ee.id).innerHTML;
         clip.setText(copything);
 
           if (clip.div)
@@ -117,58 +117,63 @@ onKeyUp='limitText(this.form.limitedtextarea,this.form.countdown,$textlength);'>
   $sql = 'SELECT *  FROM `displaydumps` WHERE timestamp > NOW() - INTERVAL '.$dumpduration.' MINUTE ORDER BY `timestamp` DESC';
   $query = mysql_query($sql);
   while($row = mysql_fetch_array($query)) {
-  if( $row['limitedviewing'] == "1" && $dumpersIP != $row['dumpersIP']) {
-  // dump not displayed because it is private
-  } else {
+    if( $row['limitedviewing'] == 1 && $dumpersIP != $row['dumpersIP']) {
+     // dump not displayed because it is private
+    } else {
+      // gets time since dump
+      $displaytime = $row['sincetime'];
 
-  // gets time since dump
-  $displaytime = $row['sincetime'];
+      // gets uptime for HSV conversion
+      $uptime = time()-strtotime($row['timestamp']);
 
-  // gets uptime for HSV conversion
-  $uptime = time()-strtotime($row['timestamp']);
+      // Creates a number between 0 and 1 for saturation
+      $s = ($dumpdurationsec-$uptime)/$dumpdurationsec;
 
-  // Creates a number between 0 and 1 for saturation
-  $s = ($dumpdurationsec-$uptime)/$dumpdurationsec;
+      // converts hsv to RGB
+      $hsv = array($row['hue'], $s, $value);
+      $RGB = HSVtoRGB($hsv);
 
-  // converts hsv to RGB
-  $hsv = array($row['hue'], $s, $value);
-  $RGB = HSVtoRGB($hsv);
+      // rawID for short raw url
+      $rawID = substr($row['dumpID'], -2);
+      $dumpID = $row['dumpID'];
 
-  // places an astrix next to private messages
-  $star = "" ;
-  if( $row['limitedviewing'] == "1" ){
-  $star = " <i>{viewing limited to your public facing IP}</i>" ;
-  }
+      // Display text
+      $displaytext = (makelinks(htmlentities($row['dumpedtext']),$RGB));
 
-  // puts a X for own posts
-  $X = "";
-  if( $row['dumpersIP'] == $dumpersIP ){
-  $X = " <a href='/ref.php?r=".$row['dumpID']."' title='Repost this dump' style=color:#$RGB;>^</a>  <a href='/del.php?d=".$row['dumpID']."' title='Delete this dump' style=color:#$RGB;>X</a>" ;
-  }
+      // places an astrix next to private messages
+      $star = "" ;
+      if( $row['limitedviewing'] == 1 ){
+        $star = " <i>{viewing limited to your public facing IP}</i>" ;
+      }
 
-  // rawID for short raw url
-  $rawID = substr($row['dumpID'], -2);
+      // puts a X for own posts
+      $X = "";
+      if( $row['dumpersIP'] == $dumpersIP ){
+        $X = " <a href='/ref.php?r=$dumpID' title='Repost this dump' style=color:#$RGB;>^</a>  <a href='/del.php?d=$dumpID' title='Delete this dump' style=color:#$RGB;>X</a>" ;
+      }
 
-  // outputs dump with htmlentities removed and nl replaced with <br>
-  $dumps = "$dumps
+      // outputs dump with htmlentities removed and nl replaced with <br>
+      $dumps = "$dumps
     <p>
     <div align='right'>
-    <font size='1' color='#$RGB'>dumped $displaytime ago$star (<a href='/$rawID' title='Raw text id, useful for curl on *nix' style=color:#$RGB;>$rawID</a>) <a id='".$row['dumpID']."' title='Copy dump' onMouseOver='move_swf(this);return false;'><u>C</u></a>$X</font>
-      </div>
-      <hr size=2 color='#$RGB'>
-        <font color='#$RGB'><PRE><p id='".$row['dumpID']."_text'>".(makelinks(htmlentities($row['dumpedtext']),$RGB))."</p></PRE></font>
+      <font size='1' color='#$RGB'>dumped $displaytime ago$star (<a href='/$rawID' title='Raw text id, useful for curl on *nix' style=color:#$RGB;>$rawID</a>) <a id='$dumpID' title='Copy dump' onMouseOver='move_swf(this);return false;'><u>C</u></a>$X</font>
+    </div>
+    <hr size=2 color='#$RGB'>
+      <font color='#$RGB'>
+        <PRE><p id='$dumpID'>$displaytext</p></PRE>
+      </font>
     </p>";
-  }
+    }
   }
 
-  $footer = "
+    $footer = "
     <hr size=2 color='#555'>
     <div align='center'><font size='1' color='#888'>This free service is brought to you by <a href='http://gho.st'>Gho.st community web services</a>, <a href='https://github.com/GhostWeb/DumpBoard'>fork me!</a> Engine designed & developed by <a href='http://gregology.net'>Gregology</a>. Please respect intellectual property. Enjoy!</font></div>
   </body>
 </html>";
 
-echo $head;
-echo $dumps;
-echo $footer;
+  echo $head;
+  echo $dumps;
+  echo $footer;
 
 ?>
