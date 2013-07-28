@@ -97,7 +97,7 @@
     <META HTTP-EQUIV='refresh' CONTENT='$refreshrate'>
     $trackingscript
   </head>
-  <body style='background-image:url(`$headerimage`); background-repeat:no-repeat; background-position:right top;' onload='init();'>
+  <body style='background-image:url($headerimage); background-repeat:no-repeat; background-position:right top;' onload='init();'>
     <center>
     <font class='shadowtexttitle'><b>$title</font></br>
     <font class='shadowtexttag'>$tagline</font><br>
