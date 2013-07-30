@@ -95,7 +95,7 @@
 	}
     </style>
 
-    <link rel='stylesheet' href='css/app.css' />
+    <link rel='stylesheet' href='stylesheets/app.css' />
 
     <META HTTP-EQUIV='refresh' CONTENT='$refreshrate'>
     $trackingscript
