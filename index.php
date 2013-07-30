@@ -36,7 +36,7 @@
   $head = "<html>
   <head>
     <title>$title</title>
-    <script src="js/vendor/custom.modernizr.js"></script>
+    <script src='js/vendor/custom.modernizr.js'></script>
     <script type='text/javascript' src='ZeroClipboard.js'></script>
     <script language='JavaScript'>
       var clip = null;
@@ -95,7 +95,7 @@
 	}
     </style>
 
-    <link rel="stylesheet" href="css/app.css" />
+    <link rel='stylesheet' href='css/app.css' />
 
     <META HTTP-EQUIV='refresh' CONTENT='$refreshrate'>
     $trackingscript
