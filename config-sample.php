@@ -6,9 +6,6 @@ $title = "Dump Board";
 // $tagline = "A temporary space for your text";
 $tagline = "No accounts, no passwords, just dump and retrieve<br>Move text between any Internet devices with one URL";
 
-# Refresh rate. Note: measured in seconds.
-$refreshrate = 600;
-
 # MySQL Database settings. Note: The database needs to be created manually. I might make a install application in later versions.
 $dbhost = 'localhost';
 $dbname = 'dbname';
