@@ -94,7 +94,6 @@
 	word-wrap: break-word;       /* Internet Explorer 5.5+ */
 	}
     </style>
-    <META HTTP-EQUIV='refresh' CONTENT='$refreshrate'>
     $trackingscript
   </head>
   <body style='background-image:url($headerimage); background-repeat:no-repeat; background-position:right top;' onload='init();'>
