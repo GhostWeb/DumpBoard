@@ -115,6 +115,7 @@ onKeyUp='limitText(this.form.limitedtextarea,this.form.countdown,$textlength);'>
 
   $sql = 'SELECT *  FROM `displaydumps` WHERE timestamp > NOW() - INTERVAL '.$dumpduration.' MINUTE ORDER BY `timestamp` DESC';
   $query = mysql_query($sql);
+  $dumps = "";
   while($row = mysql_fetch_array($query)) {
     if( $row['limitedviewing'] == 1 && $dumpersIP != $row['dumpersIP']) {
      // dump not displayed because it is private
