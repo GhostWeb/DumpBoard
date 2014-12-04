@@ -1,7 +1,7 @@
 <?php
 function makelinks($text,$linkcolor) {
 $replacements = "'<a style=\"color:#".$linkcolor.";\" href=\"$1\" target=\"_blank\">$1</a>$4'";
-$patterns = "#((http|https|ftp)://(\S*?\.\S*?))(\s|\;|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie";
+$patterns = "#((http|https|ftp)://(\S*?\.\S*?))(\s|\)|\]|\[|\{|\}|,|\"|'|:|\<|$|\.\s)#ie";
 $text = preg_replace($patterns, $replacements, $text);
 return $text;
 }
