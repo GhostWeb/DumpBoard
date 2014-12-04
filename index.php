@@ -15,8 +15,6 @@
   //collect information for tracker
   $browser  = mysql_real_escape_string($_SERVER['HTTP_USER_AGENT']) ; // get the browser name
   $ip = ip_address_to_number($_SERVER['REMOTE_ADDR']);
-  //$ip  =  mysql_real_escape_string($_SERVER['REMOTE_ADDR']) ;   // get the IP address
-  $from_page = mysql_real_escape_string($_SERVER['HTTP_REFERER']) ;//  page from which visitor came
   $uri = mysql_real_escape_string($_SERVER['REQUEST_URI']) ; //get uri
   $language = mysql_real_escape_string($_SERVER['HTTP_ACCEPT_LANGUAGE']) ; //language code
 
